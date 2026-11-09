@@ -1,0 +1,505 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #071A33, #123B78);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 800px;
+    background: #FFFFFF;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid #D4AF37;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #123B78;
+}
+
+.subtitle {
+    text-align: center;
+    color: #64748B;
+    margin-bottom: 30px;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #123B78;
+    border-left: 4px solid #D4AF37;
+    padding-left: 10px;
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #123B78;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #171717;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #CBD5E1;
+    background: #F8FAFC;
+    color: #171717;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 15px;
+    transition: 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #D4AF37;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+/* SELLING COMBINATIONS */
+
+.combination {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 45px;
+    gap: 10px;
+    align-items: end;
+    margin-bottom: 10px;
+}
+
+.combination label {
+    font-size: 13px;
+}
+
+.combination input,
+.combination select {
+    margin-bottom: 0;
+}
+
+/* PAID AFTER COMBINATIONS */
+
+.paidCombination {
+    display: grid;
+    grid-template-columns: 1fr 1fr 45px;
+    gap: 10px;
+    align-items: end;
+    margin-bottom: 10px;
+}
+
+.paidCombination label {
+    font-size: 13px;
+}
+
+.paidCombination input,
+.paidCombination select {
+    margin-bottom: 0;
+}
+
+/* REMOVE BUTTON */
+
+.removeBtn {
+    height: 42px;
+    border: none;
+    background: #171717;
+    color: #FFFFFF;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.removeBtn:hover {
+    background: #B91C1C;
+}
+
+/* ADD BUTTON */
+
+.addBtn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: 2px dashed #D4AF37;
+    background: #FFFCF2;
+    color: #123B78;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.addBtn:hover {
+    background: #F5E6B3;
+    border-color: #B38B18;
+}
+
+/* CALCULATE */
+
+.calculateBtn {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #D4AF37;
+    border-radius: 8px;
+    background: #123B78;
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: 0.3s ease;
+}
+
+.calculateBtn:hover {
+    background: #071A33;
+    color: #F5E6B3;
+}
+
+/* CHECKBOX */
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.checkboxLabel input {
+    width: auto;
+    margin: 0;
+    accent-color: #123B78;
+}
+
+/* PAID AFTER BOX */
+
+.paidAfter {
+    background: #F4F7FC;
+    border: 1px solid #D4AF37;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.smallText {
+    color: #64748B;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+/* ERROR */
+
+#error {
+    color: #991B1B;
+    background: #FEE2E2;
+    border-left: 4px solid #DC2626;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: none;
+}
+
+/* RESULTS */
+
+.results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.resultBox {
+    background: #F4F7FC;
+    border: 1px solid #DCE5F1;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.resultBox span {
+    display: block;
+    color: #64748B;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.resultBox strong {
+    font-size: 22px;
+    color: #123B78;
+}
+
+.profitBox {
+    background: #FFF9E8;
+    border: 1px solid #D4AF37;
+    grid-column: 1 / -1;
+}
+
+.profitBox strong {
+    color: #123B78;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .calculator {
+        padding: 20px;
+    }
+
+    .combination,
+    .paidCombination {
+        grid-template-columns: 1fr;
+    }
+
+    .removeBtn {
+        width: 100%;
+    }
+
+    .results {
+        grid-template-columns: 1fr;
+    }
+
+    .profitBox {
+        grid-column: auto;
+    }
+}
+
+
+
+/* =================================
+   RESPONSIVE DESIGN
+================================= */
+
+/* TABLETS */
+@media screen and (max-width: 768px) {
+
+    body {
+        padding: 20px;
+        align-items: flex-start;
+    }
+
+    .calculator {
+        width: 100%;
+        max-width: 100%;
+        padding: 25px 20px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .combination {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .paidCombination {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .removeBtn {
+        width: 100%;
+        height: 42px;
+    }
+
+    .results {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* MOBILE PHONES */
+@media screen and (max-width: 600px) {
+
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .calculator {
+        width: 100%;
+        padding: 18px 14px;
+        border-radius: 12px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+        margin-bottom: 22px;
+        line-height: 1.5;
+    }
+
+    .section {
+        margin-bottom: 23px;
+    }
+
+    h2 {
+        font-size: 17px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input,
+    select {
+        font-size: 15px;
+        padding: 11px;
+    }
+
+    /* SELLING COMBINATIONS */
+    .combination {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 12px;
+        background: #F4F7FC;
+        border: 1px solid #DCE5F1;
+        border-radius: 10px;
+    }
+
+    .combination label {
+        font-size: 12px;
+    }
+
+    /* PAID COMBINATIONS */
+    .paidCombination {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 12px;
+        background: #F4F7FC;
+        border: 1px solid #DCE5F1;
+        border-radius: 10px;
+    }
+
+    .paidCombination label {
+        font-size: 12px;
+    }
+
+    /* REMOVE BUTTON */
+    .removeBtn {
+        grid-column: 1 / -1;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    /* ADD BUTTON */
+    .addBtn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* CALCULATE BUTTON */
+    .calculateBtn {
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    /* PAID AFTER */
+    .paidAfter {
+        padding: 15px;
+    }
+
+    /* RESULTS */
+    .results {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .resultBox {
+        padding: 16px;
+    }
+
+    .resultBox strong {
+        font-size: 20px;
+        overflow-wrap: anywhere;
+    }
+
+    .profitBox {
+        grid-column: auto;
+    }
+
+    .smallText {
+        font-size: 12px;
+    }
+}
+
+
+/* SMALL PHONES */
+@media screen and (max-width: 380px) {
+
+    body {
+        padding: 7px;
+    }
+
+    .calculator {
+        padding: 15px 10px;
+    }
+
+    h1 {
+        font-size: 19px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    .combination,
+    .paidCombination {
+        grid-template-columns: 1fr;
+    }
+
+    .removeBtn {
+        grid-column: auto;
+    }
+
+    input,
+    select {
+        font-size: 14px;
+    }
+
+    .resultBox strong {
+        font-size: 18px;
+    }
+}

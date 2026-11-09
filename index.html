@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Profit Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <h1>Data Profit Calculator</h1>
+    <p class="subtitle">
+        Calculate data sales, charges and profit
+    </p>
+
+
+    <!-- MAIN DATA PLAN -->
+
+    <div class="section">
+
+        <h2>Main Data Plan</h2>
+
+        <label for="mainData">
+            Data Loaded (GB)
+        </label>
+
+        <input
+            type="number"
+            id="mainData"
+            placeholder="e.g. 5"
+            min="0"
+            step="0.5"
+        >
+
+        <label for="mainCost">
+            Amount Paid (₦)
+        </label>
+
+        <input
+            type="number"
+            id="mainCost"
+            placeholder="e.g. 1000"
+            min="0"
+        >
+
+    </div>
+
+
+    <!-- SELLING COMBINATIONS -->
+
+    <div class="section">
+
+        <h2>Selling Combinations</h2>
+
+        <div id="combinations">
+
+            <div class="combination">
+
+                <div>
+                    <label>Data</label>
+
+                    <select class="dataSize">
+
+                        <option value="0.5">500MB</option>
+                        <option value="1">1GB</option>
+                        <option value="2">2GB</option>
+                        <option value="3">3GB</option>
+                        <option value="5">5GB</option>
+                        <option value="10">10GB</option>
+                        <option value="20">20GB</option>
+                        <option value="36">36GB</option>
+                        <option value="65">65GB</option>
+
+                    </select>
+                </div>
+
+
+                <div>
+                    <label>Price (₦)</label>
+
+                    <input
+                        type="number"
+                        class="price"
+                        placeholder="e.g. 50"
+                        min="0"
+                    >
+                </div>
+
+
+                <div>
+                    <label>Quantity</label>
+
+                    <input
+                        type="number"
+                        class="quantity"
+                        placeholder="e.g. 2"
+                        min="0"
+                    >
+                </div>
+
+
+                <button
+                    class="removeBtn"
+                    onclick="removeCombination(this)"
+                >
+                    ×
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="addBtn"
+            onclick="addCombination()"
+        >
+            + Add Combination
+        </button>
+
+    </div>
+
+
+    <!-- AUTOMATION -->
+
+    <div class="section">
+
+        <h2>Automation Charge</h2>
+
+        <label for="automationCharge">
+            Charge Per Share (₦)
+        </label>
+
+        <input
+            type="number"
+            id="automationCharge"
+            value="5"
+            min="0"
+        >
+
+        <p class="smallText">
+            The charge is multiplied by the total number of shares.
+        </p>
+
+    </div>
+
+
+    <!-- PAID AFTER -->
+
+    <div class="section">
+
+        <h2>Paid After</h2>
+
+        <label class="checkboxLabel">
+
+            <input
+                type="checkbox"
+                id="paidAfterEnabled"
+                onchange="togglePaidAfter()"
+            >
+
+            Enable Paid After
+
+        </label>
+
+
+        <div
+            id="paidAfterSection"
+            class="paidAfter hidden"
+        >
+
+            <label for="monthlyShares">
+                Normal Monthly Shares
+            </label>
+
+            <input
+                type="number"
+                id="monthlyShares"
+                placeholder="e.g. 10"
+                min="0"
+            >
+
+
+            <h3>Paid After Prices</h3>
+
+            <p class="smallText">
+                Set the price charged when a share goes
+                beyond your normal monthly allowance.
+            </p>
+
+
+            <div id="paidAfterCombinations">
+
+                <div class="paidCombination">
+
+                    <div>
+
+                        <label>Data</label>
+
+                        <select class="paidDataSize">
+
+                            <option value="0.5">
+                                500MB
+                            </option>
+
+                            <option value="1">
+                                1GB
+                            </option>
+
+                            <option value="2">
+                                2GB
+                            </option>
+
+                            <option value="3">
+                                3GB
+                            </option>
+
+                            <option value="5">
+                                5GB
+                            </option>
+
+                            <option value="10">
+                                10GB
+                            </option>
+
+                            <option value="20">
+                                20GB
+                            </option>
+
+                            <option value="36">
+                                36GB
+                            </option>
+
+                            <option value="65">
+                                65GB
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Paid After Price (₦)</label>
+
+                        <input
+                            type="number"
+                            class="paidAfterPrice"
+                            placeholder="e.g. 50"
+                            min="0"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="removeBtn"
+                        onclick="removePaidCombination(this)"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="addBtn"
+                onclick="addPaidCombination()"
+            >
+                + Add Paid After Plan
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CALCULATE -->
+
+    <button
+        class="calculateBtn"
+        onclick="calculateProfit()"
+    >
+        Calculate Profit
+    </button>
+
+
+    <!-- ERROR -->
+
+    <p id="error"></p>
+
+
+    <!-- RESULTS -->
+
+    <div class="results">
+
+        <div class="resultBox">
+
+            <span>Total Data Sold</span>
+
+            <strong id="totalData">
+                0 GB
+            </strong>
+
+        </div>
+
+
+        <div class="resultBox">
+
+            <span>Data Remaining</span>
+
+            <strong id="remainingData">
+                0 GB
+            </strong>
+
+        </div>
+
+
+        <div class="resultBox">
+
+            <span>Total Shares</span>
+
+            <strong id="totalShares">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="resultBox">
+
+            <span>Normal Sales</span>
+
+            <strong id="totalSales">
+                ₦0
+            </strong>
+
+        </div>
+
+
+        <div class="resultBox">
+
+            <span>Automation Charges</span>
+
+            <strong id="automationTotal">
+                ₦0
+            </strong>
+
+        </div>
+
+
+        <div class="resultBox">
+
+            <span>Paid After Charges</span>
+
+            <strong id="paidAfterTotal">
+                ₦0
+            </strong>
+
+        </div>
+
+
+        <div class="resultBox">
+
+            <span>Total Revenue</span>
+
+            <strong id="totalRevenue">
+                ₦0
+            </strong>
+
+        </div>
+
+
+        <div class="resultBox profitBox">
+
+            <span>Actual Profit</span>
+
+            <strong id="profit">
+                ₦0
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
